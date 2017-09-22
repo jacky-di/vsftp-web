@@ -28,7 +28,7 @@ foreach($a as $b){ //遍历数组
 $c=$b.";"; //分割后是没有“;”的，因为SQL语句以“;”结束，所以在执行SQL前把它加上 
 mysql_query($c); //执行SQL语句 
 } }			
-			$myfile = fopen("../db.php", "w") or die("Unable to open file!");
+			$myfile = fopen("../db.php", "w") or die("当前目录不可写或文件已占用");
 					//创建项目的配置文件
 					$config ="<?php
 							mysql_connect('".$_POST['db_host']."','".$_POST['db_user']."','".$_POST['db_pwd']."');  
@@ -123,6 +123,10 @@ $step = isset($_GET['step']) ? $_GET['step'] : 1;
 									<input type="text" class="input-xlarge" name="db_user" id="db_user" value="root" placeholder="" style="width:350px;"/>
 								</p>
 								<p>
+									<label style="width:150px;"></label>
+									<font>此用户名必须有权限创建数据库（建议用root账号）。</font>
+								</p>
+								<p>
 									<label style="width:150px;">数据库密码：</label>
 									<input type="text" class="input-xlarge" name="db_pwd" id="db_pwd" value="" placeholder="" style="width:350px;"/>
 								</p>
@@ -155,7 +159,7 @@ $step = isset($_GET['step']) ? $_GET['step'] : 1;
 					</form>
 					<p>
 									<label style="width:150px;"></label>
-									<font>本系统完成后会建立一个系统用户名为admin密码也是admin</font>
+									<font>本系统完成后会建立一个系统用户名为admin密码也是admin（建议安装完成后删除安装目录防止多次初始化）</font>
 								</p>
 				</div>
 			<?php }?>

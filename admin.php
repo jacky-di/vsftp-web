@@ -74,13 +74,6 @@ function query($sql){
 }
 //添加
 function adduser($name,$password){
-                 
-    if (strlen($name)<3) {
-        alertExit('用户名至少三位!',1);
-    }
-    if (strlen($password)<6) {
-        alertExit('密码必须大于八位!',1);
-    }
     $sql = "select * from users where name='$name'";
     $result = mysql_query($sql)  or die ("SQL语句查询错误: " . mysql_error());
     if (mysql_num_rows($result) > 0) {
